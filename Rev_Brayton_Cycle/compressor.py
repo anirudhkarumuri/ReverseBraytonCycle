@@ -14,7 +14,6 @@ class Compressor(Medium):
         super().__init__(initial_pressure,initial_temperature)
         self.compression_ratio : float = compression_ratio
 
-
     def calculate_pressure_temperature(self):
     # Performs isentropic compression
         """
