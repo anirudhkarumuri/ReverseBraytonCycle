@@ -1,6 +1,5 @@
 from .medium import Medium
 
-
 class Compressor(Medium):
 
     """
@@ -8,9 +7,17 @@ class Compressor(Medium):
     """
 
     __slots__ = ["initial_pressure", "initial_temperature", "compression_ratio"]
-    # slots will make the access of the variables faster.
 
-    def __init__(self, initial_pressure: float, initial_temperature: float, compression_ratio: float):
+    def __init__(self, initial_pressure: float, initial_temperature: float, compression_ratio: float) -> None:
+        """
+        Initializes the initial conditions of the compressor
+        Args:
+            initial_pressure: Pressure of the gas before entering the compressor
+            initial_temperature: initial temperature of gas before entering the compressor
+            compression_ratio: Pressure compression rate (Centrifugal/axial, not bore and stroke)
+        Returns: None
+        """
+
         super().__init__(initial_pressure,initial_temperature)
         self.compression_ratio : float = compression_ratio
 
@@ -20,7 +27,11 @@ class Compressor(Medium):
         Calculates the pressure and temperature of the gas"""
 
         gamma = self.specific_heat_ratio()
-        pressure_p2= self.initial_pressure*pow(self.compression_ratio,gamma)
+
+        # the following equation is considered only when the compressor is a type of bore and stroke
+        # pressure_p2= self.initial_pressure*pow(self.compression_ratio,gamma)
+
+        pressure_p2 = self.initial_pressure*self.compression_ratio
         t2_temperature = self.initial_temperature*pow(pressure_p2/self.initial_pressure,(1-1/gamma))
         return pressure_p2, t2_temperature
 
