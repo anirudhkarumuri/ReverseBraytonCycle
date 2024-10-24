@@ -21,7 +21,7 @@ class Medium:
     def specific_heat_ratio(self):
         """
         Returns the specific heat ratio of the fluid at Position 1
-        :return:
+        :return: cp, and cv values
         """
 
         df = self.__get_gamma_value_from_db()
@@ -30,10 +30,9 @@ class Medium:
         gamma_values = df["gamma"]
         temp = self.initial_temperature
         cp = np.interp(temp, temperature_values, cp_values)
-        self.gamma = np.interp(temp,temperature_values, gamma_values)
+        gamma = np.interp(temp,temperature_values, gamma_values)
         # gamma is specific heat ratio
-        gamma = 'implement search algo'
-        return cp, self.gamma
+        return cp, gamma
 
     @staticmethod
     def __get_gamma_value_from_db():
