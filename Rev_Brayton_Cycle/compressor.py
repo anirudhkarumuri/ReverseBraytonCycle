@@ -40,5 +40,5 @@ class Compressor(Medium):
         # work done = m (kg/s) * (h2-h1) ie cp(T2-T1)
         # getcp
         compressor_work = (self.cp * self.initial_temperature* (pow(self.compression_ratio,(self.gamma - 1) / self.gamma) - 1))
-        pass
+        return compressor_work
 
