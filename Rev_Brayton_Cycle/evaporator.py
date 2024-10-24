@@ -19,6 +19,7 @@ class Evaporator(Medium):
         print(delta_temp ,self.t4_temperature)
         cp, gamma =self.specific_heat_ratio()
         heat_added = delta_temp * cp
+        # considering unit mass flow
         print(cp, gamma, heat_added)
         return heat_added
 

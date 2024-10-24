@@ -4,12 +4,11 @@ sys.path.append('./Rev_Brayton_Cycle')
 from Rev_Brayton_Cycle import *
 
 class RevBraytonCycle:
-    def __init__(self, initial_pressure, initial_temperature, pressure_ratio, compressor_efficiency, turbine_efficiency, heat_rejection_efficiency, ambient_temp):
+    def __init__(self, initial_pressure, initial_temperature, pressure_ratio, turbine_efficiency, heat_rejection_efficiency, ambient_temp):
         # Set initial conditions
         self.initial_pressure = initial_pressure
         self.initial_temperature = initial_temperature
         self.pressure_ratio = pressure_ratio
-        self.compressor_efficiency = compressor_efficiency
         self.turbine_efficiency = turbine_efficiency
         self.heat_rejection_efficiency = heat_rejection_efficiency
         self.ambient_temp = ambient_temp
@@ -48,7 +47,7 @@ class RevBraytonCycle:
             'compressor': {'pressure_out': comp_out_pressure, 'temperature_out': comp_out_temp, 'work_done': compressor_work},
             'condenser': {'pressure_out': cond_out_pressure, 'temperature_out': cond_out_temp},
             'turbine': {'pressure_out': turb_out_pressure, 'temperature_out': turb_out_temp, 'work_done': turbine_work},
-            'evaporator': { 'heat_added': self.heat_added},
+            'evaporator': { 'heat_added': evap_heat},
             'net_work': {'net_work':compressor_work - turbine_work},
             'cop': self.calculate_cop(compressor_work, turbine_work, evap_heat)
         }
@@ -69,12 +68,10 @@ class RevBraytonCycle:
         return Cop
 
 
-# Initialize and run the reverse Brayton cycle
 brayton_cycle = RevBraytonCycle(
     initial_pressure=101325,           # 1 atm
     initial_temperature=273,           # 300 K (ambient temp)
     pressure_ratio=4,                 # Compression ratio
-    compressor_efficiency=0.85,        # Compressor efficiency
     turbine_efficiency=0.8,            # Turbine efficiency
     heat_rejection_efficiency=0.8,     # Condenser efficiency
     ambient_temp=295                   # Ambient temperature (K)
