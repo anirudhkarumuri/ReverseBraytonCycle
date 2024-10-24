@@ -1,4 +1,6 @@
 from .medium import Medium
+
+
 class Evaporator(Medium):
 
     def __init__(self, p4_pressure, t4_temp):
@@ -12,14 +14,12 @@ class Evaporator(Medium):
         self.p4_pressure = p4_pressure
         self.t4_temperature = float(t4_temp)
 
-
     def get_heat_added(self, inlet_temperature):
-        print('Initial temperature inside get_heat_added:', inlet_temperature)
-        delta_temp = inlet_temperature-float(self.t4_temperature)
-        print(delta_temp ,self.t4_temperature)
-        cp, gamma =self.specific_heat_ratio()
+        print("Initial temperature inside get_heat_added:", inlet_temperature)
+        delta_temp = inlet_temperature - float(self.t4_temperature)
+        print(delta_temp, self.t4_temperature)
+        cp, gamma = self.specific_heat_ratio()
         heat_added = delta_temp * cp
         # considering unit mass flow
         print(cp, gamma, heat_added)
         return heat_added
-
