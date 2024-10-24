@@ -70,7 +70,7 @@ class RevBraytonCycle:
 
 brayton_cycle = RevBraytonCycle(
     initial_pressure=101325,           # 1 atm
-    initial_temperature=273,           # 300 K (ambient temp)
+    initial_temperature=300,           # 300 K (ambient temp)
     pressure_ratio=4,                 # Compression ratio
     heat_rejection_efficiency=0.8,     # Condenser efficiency
     ambient_temp=295                   # Ambient temperature (K)
