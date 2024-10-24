@@ -40,8 +40,7 @@ class RevBraytonCycle:
         print(f"Turbine Output: Pressure = {turb_out_pressure} Pa, Temperature = {turb_out_temp} K, Work Done = {turbine_work} KW")
 
         # Evaporator Stage (Heat Addition)
-        evaporator_stage = Evaporator(turb_out_temp, turb_out_pressure)
-        print(self.initial_temperature)
+        evaporator_stage = Evaporator(turb_out_pressure, turb_out_temp)
         evap_heat = evaporator_stage.get_heat_added(self.initial_temperature)
 
         # Cycle Outputs: Return all relevant data
@@ -54,6 +53,7 @@ class RevBraytonCycle:
             'cop': self.calculate_cop(compressor_work, turbine_work, evap_heat)
         }
 
+
     def calculate_cop(self, compressor_work, turbine_work, heat_added):
         """
         Calculate the coefficient of performance (COP) for the reverse Brayton cycle.
@@ -63,6 +63,7 @@ class RevBraytonCycle:
         :param heat_added: Heat added in the evaporator (Q_evaporator)
         :return: COP (coefficient of performance) value
         """
+
         net_work = compressor_work - turbine_work
         Cop = heat_added/net_work
         return Cop

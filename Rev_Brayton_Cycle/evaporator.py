@@ -15,10 +15,10 @@ class Evaporator(Medium):
 
     def get_heat_added(self, inlet_temperature):
         print('Initial temperature inside get_heat_added:', inlet_temperature)
-        delta_temp = float(inlet_temperature-self.t4_temperature)
+        delta_temp = inlet_temperature-float(self.t4_temperature)
         print(delta_temp ,self.t4_temperature)
         cp, gamma =self.specific_heat_ratio()
-        heat_added = delta_temp * cp * 0.8
+        heat_added = delta_temp * cp
         print(cp, gamma, heat_added)
         return heat_added
 
