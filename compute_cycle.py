@@ -1,15 +1,15 @@
+import json
 import sys
 sys.path.append('./Rev_Brayton_Cycle')
 
 from Rev_Brayton_Cycle import *
 
 class RevBraytonCycle:
-    def __init__(self, initial_pressure, initial_temperature, pressure_ratio, turbine_efficiency, heat_rejection_efficiency, ambient_temp):
+    def __init__(self, initial_pressure, initial_temperature, pressure_ratio, heat_rejection_efficiency, ambient_temp):
         # Set initial conditions
         self.initial_pressure = initial_pressure
         self.initial_temperature = initial_temperature
         self.pressure_ratio = pressure_ratio
-        self.turbine_efficiency = turbine_efficiency
         self.heat_rejection_efficiency = heat_rejection_efficiency
         self.ambient_temp = ambient_temp
         self.heat_added = None
@@ -49,7 +49,7 @@ class RevBraytonCycle:
             'turbine': {'pressure_out': turb_out_pressure, 'temperature_out': turb_out_temp, 'work_done': turbine_work},
             'evaporator': { 'heat_added': evap_heat},
             'net_work': {'net_work':compressor_work - turbine_work},
-            'cop': self.calculate_cop(compressor_work, turbine_work, evap_heat)
+            'cop': float(self.calculate_cop(compressor_work, turbine_work, evap_heat))
         }
 
 
@@ -72,7 +72,6 @@ brayton_cycle = RevBraytonCycle(
     initial_pressure=101325,           # 1 atm
     initial_temperature=273,           # 300 K (ambient temp)
     pressure_ratio=4,                 # Compression ratio
-    turbine_efficiency=0.8,            # Turbine efficiency
     heat_rejection_efficiency=0.8,     # Condenser efficiency
     ambient_temp=295                   # Ambient temperature (K)
 )
@@ -81,4 +80,4 @@ brayton_cycle = RevBraytonCycle(
 cycle_results = brayton_cycle.run_cycle()
 
 # Output the results including COP
-print("\nCycle Results:" ,cycle_results)
+print("\nCycle Results:" ,json.dumps(cycle_results, indent=3))
