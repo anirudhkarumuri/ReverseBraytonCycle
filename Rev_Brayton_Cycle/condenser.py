@@ -24,6 +24,6 @@ class Condenser:
 
     def get_output(self):
         # Heat Rejection - Isobaric step in this heat exchanger, releasing heat to the surroundings.
-        self.t3_temperature= self.ambient_temp - self.efficiency * (self.t2_temperature - self.ambient_temp)  # Heat exchanger effectiveness applied
+        self.t3_temperature= self.t2_temperature - self.efficiency * (self.t2_temperature - self.ambient_temp)  # Heat exchanger effectiveness applied
         return self.p3_pressure,self.t3_temperature
 

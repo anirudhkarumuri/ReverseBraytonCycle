@@ -20,11 +20,11 @@ class Turbine(Medium):
         Calculates the pressure and temperature of the gas"""
         pressure_p4 = self.pressure_p3/self.compression_ratio
         self.cp, self.gamma = self.specific_heat_ratio()
-        t4_temperature = self.temperature_t3*pow((1/self.compression_ratio),(1-1/self.gamma))
-        return pressure_p4, t4_temperature
+        t4_temperature = self.temperature_t3*(1/pow(self.compression_ratio,(1-1/self.gamma)))
+        return float(pressure_p4), float(t4_temperature)
 
     def calculate_work_done(self):
 
         work_done = (self.cp * self.temperature_t3* (1-pow((1/self.compression_ratio),(self.gamma -1)/self.gamma)))
-        return work_done
+        return float(work_done)
 

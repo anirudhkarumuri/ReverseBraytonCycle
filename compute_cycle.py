@@ -24,7 +24,7 @@ class RevBraytonCycle:
         print(f"Compressor Output: Pressure = {comp_out_pressure} Pa, Temperature = {comp_out_temp} K")
         compressor_work = compressor_stage.calculate_work_done()
 
-        print(f"Compressor Output: Pressure = {comp_out_pressure} Pa, Temperature = {comp_out_temp} K, Work Done = {compressor_work} J")
+        print(f"Compressor Output: Pressure = {comp_out_pressure} Pa, Temperature = {comp_out_temp} K, Work Done = {compressor_work} KW")
 
         # Condenser Stage
         condenser_stage = Condenser(comp_out_pressure, comp_out_temp, self.heat_rejection_efficiency, self.ambient_temp)
@@ -37,7 +37,7 @@ class RevBraytonCycle:
         turb_out_pressure, turb_out_temp = turbine_stage.calculate_pressure_temperature()
         turbine_work = turbine_stage.calculate_work_done()
 
-        print(f"Turbine Output: Pressure = {turb_out_pressure} Pa, Temperature = {turb_out_temp} K, Work Done = {turbine_work} J")
+        print(f"Turbine Output: Pressure = {turb_out_pressure} Pa, Temperature = {turb_out_temp} K, Work Done = {turbine_work} KW")
 
         # Evaporator Stage (Heat Addition)
         evaporator_stage = Evaporator(turb_out_temp, turb_out_pressure)
@@ -71,10 +71,10 @@ class RevBraytonCycle:
 # Initialize and run the reverse Brayton cycle
 brayton_cycle = RevBraytonCycle(
     initial_pressure=101325,           # 1 atm
-    initial_temperature=270,           # 300 K (ambient temp)
-    pressure_ratio=10,                 # Compression ratio
+    initial_temperature=273,           # 300 K (ambient temp)
+    pressure_ratio=4,                 # Compression ratio
     compressor_efficiency=0.85,        # Compressor efficiency
-    turbine_efficiency=0.9,            # Turbine efficiency
+    turbine_efficiency=0.8,            # Turbine efficiency
     heat_rejection_efficiency=0.8,     # Condenser efficiency
     ambient_temp=295                   # Ambient temperature (K)
 )
