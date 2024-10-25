@@ -26,6 +26,9 @@ class Compressor(Medium):
         super().__init__(initial_pressure, initial_temperature)
         self.compression_ratio: float = compression_ratio
         self.cp = None
+        self.volume = None
+        self.cv = None
+        self.volume_v2 = None
 
     def calculate_pressure_temperature(self):
         # Performs isentropic compression
@@ -36,7 +39,6 @@ class Compressor(Medium):
         print(self.cp, gamma)
         # the following equation is considered only when the compressor is a type of bore and stroke
         # pressure_p2= self.initial_pressure*pow(self.compression_ratio,gamma)
-
         pressure_p2 = self.pressure * self.compression_ratio
         t2_temperature = self.temperature * pow(self.compression_ratio, (1 - 1 / gamma))
         return float(pressure_p2), float(t2_temperature)
@@ -51,3 +53,15 @@ class Compressor(Medium):
             * (pow(self.compression_ratio, (self.gamma - 1) / self.gamma) - 1)
         )
         return float(compressor_work)
+
+    def calculate_volume(self):
+
+        # Using ideal gas equation
+
+        # PV = mRT ( Since R is specific ), assuming unit mass flowing into the system.
+        # and Rspecific in KJ/KgK
+        self.volume = (self.temperature*1000*self.cp*(self.gamma-1)/self.gamma)/self.pressure
+
+        self.volume_v2 = self.volume * pow(1/self.compression_ratio, 1/self.gamma)
+        print(self.volume,self.volume_v2)
+        return self.volume, self.volume_v2

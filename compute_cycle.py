@@ -1,9 +1,8 @@
 import json
 import sys
 
-sys.path.append("./Rev_Brayton_Cycle")
-
 from Rev_Brayton_Cycle import *
+# sys.path.append("./Rev_Brayton_Cycle")
 
 
 class RevBraytonCycle:
@@ -29,9 +28,9 @@ class RevBraytonCycle:
         compressor_stage = Compressor(
             self.initial_pressure, self.initial_temperature, self.pressure_ratio
         )
-        comp_out_pressure, comp_out_temp = (
-            compressor_stage.calculate_pressure_temperature()
-        )
+        comp_out_pressure, comp_out_temp = compressor_stage.calculate_pressure_temperature()
+        comp_in_volume, comp_out_vol = compressor_stage.calculate_volume()
+
         print(
             f"Compressor Output: Pressure = {comp_out_pressure} Pa, Temperature = {comp_out_temp} K"
         )
@@ -105,16 +104,18 @@ class RevBraytonCycle:
         return Cop
 
 
-brayton_cycle = RevBraytonCycle(
+rev_brayton_cycle = RevBraytonCycle(
     initial_pressure=101325,  # 1 atm
     initial_temperature=300,  # 300 K (ambient temp)
-    pressure_ratio=4,  # Compression ratio
+    pressure_ratio=2,  # Compression ratio
     heat_rejection_efficiency=0.8,  # Condenser efficiency
     ambient_temp=295,  # Ambient temperature (K)
 )
 
+# The values above have to be taken as inputs from the user from GUI. (Pending)
+
 # Run the cycle
-cycle_results = brayton_cycle.run_cycle()
+cycle_results = rev_brayton_cycle.run_cycle()
 
 # Output the results including COP
 print("\nCycle Results:", json.dumps(cycle_results, indent=3))
