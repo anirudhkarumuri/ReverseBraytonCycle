@@ -30,4 +30,5 @@ class Condenser:
     def calculate_volume(self):
 
         self.volume_v3 = (self.t3_temperature*1000*0.287/self.p3_pressure)
-        print(self.volume_v3)
+        print("volume v3:",self.volume_v3)
+        return self.volume_v3

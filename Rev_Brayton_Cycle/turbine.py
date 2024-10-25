@@ -13,6 +13,7 @@ class Turbine(Medium):
         self.temperature_t3: float = temperature_t3
         self.cp = None
         self.gamma = None
+        self.volume_v4 =None
 
     def calculate_pressure_temperature(self):
         # Performs isentropic expansion
@@ -33,3 +34,8 @@ class Turbine(Medium):
             * (1 - pow((1 / self.compression_ratio), (self.gamma - 1) / self.gamma))
         )
         return float(work_done)
+
+    def calculate_volume(self, inlet_volume):
+
+        self.volume_v4 = inlet_volume / pow(1/self.compression_ratio, 1/self.gamma)
+        print("volume v4",self.volume_v4)

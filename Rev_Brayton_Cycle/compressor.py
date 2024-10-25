@@ -63,5 +63,5 @@ class Compressor(Medium):
         self.volume = (self.temperature*1000*self.cp*(self.gamma-1)/self.gamma)/self.pressure
 
         self.volume_v2 = self.volume * pow(1/self.compression_ratio, 1/self.gamma)
-        print(self.volume,self.volume_v2)
+        print("volume v1: ", self.volume, "volume v2: ", self.volume_v2)
         return self.volume, self.volume_v2

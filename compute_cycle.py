@@ -48,7 +48,7 @@ class RevBraytonCycle:
             self.ambient_temp,
         )
         cond_out_pressure, cond_out_temp = condenser_stage.get_output()
-        condenser_stage.calculate_volume()
+        v3_volume = condenser_stage.calculate_volume()
 
         print(
             f"Condenser Output: Pressure = {cond_out_pressure} Pa, Temperature = {cond_out_temp} K"
@@ -60,6 +60,7 @@ class RevBraytonCycle:
             turbine_stage.calculate_pressure_temperature()
         )
         turbine_work = turbine_stage.calculate_work_done()
+        turbine_stage.calculate_volume(v3_volume)
 
         print(
             f"Turbine Output: Pressure = {turb_out_pressure} Pa, Temperature = {turb_out_temp} K, Work Done = {turbine_work} KW"
