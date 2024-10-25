@@ -48,6 +48,7 @@ class RevBraytonCycle:
             self.ambient_temp,
         )
         cond_out_pressure, cond_out_temp = condenser_stage.get_output()
+        condenser_stage.calculate_volume()
 
         print(
             f"Condenser Output: Pressure = {cond_out_pressure} Pa, Temperature = {cond_out_temp} K"

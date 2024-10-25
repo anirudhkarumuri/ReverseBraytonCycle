@@ -18,6 +18,7 @@ class Condenser:
         self.ambient_temp = ambient_temp
         self.p3_pressure = self.p2_pressure
         self.t3_temperature = None
+        self.volume_v3 = None
 
     def get_output(self):
         # Heat Rejection - Isobaric step in this heat exchanger, releasing heat to the surroundings.
@@ -25,3 +26,8 @@ class Condenser:
             self.t2_temperature - self.ambient_temp
         )  # Heat exchanger effectiveness applied
         return self.p3_pressure, self.t3_temperature
+
+    def calculate_volume(self):
+
+        self.volume_v3 = (self.t3_temperature*1000*0.287/self.p3_pressure)
+        print(self.volume_v3)
